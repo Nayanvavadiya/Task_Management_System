@@ -24,7 +24,7 @@ app.use(cors({
   origin: true,
   credentials: true,
 }));
-app.use(express.json());
+app.use(express.json({ limit: '5mb' }));
 
 // API Routes
 app.get('/', (req, res) => {
@@ -52,6 +52,10 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`[Server] Product Inventory Management Server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`[Server] Product Inventory Management Server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

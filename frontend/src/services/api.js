@@ -1,6 +1,6 @@
 // API client utility for HTTP requests to Express backend
 
-const BASE_URL = '/api';
+const BASE_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
 
 export const apiRequest = async (endpoint, options = {}) => {
   const token = localStorage.getItem('inventory_token');

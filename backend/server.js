@@ -27,6 +27,14 @@ app.use(cors({
 app.use(express.json());
 
 // API Routes
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'online',
+    service: 'Product Inventory Management API',
+    health: '/api/health',
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'online',

@@ -1,6 +1,9 @@
 // API client utility for HTTP requests to Express backend
 
-const BASE_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+const DEFAULT_API_URL = import.meta.env.PROD
+  ? 'https://task-management-system-4rjr.onrender.com/api'
+  : '/api';
+const BASE_URL = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/+$/, '');
 
 export const apiRequest = async (endpoint, options = {}) => {
   const token = localStorage.getItem('inventory_token');
